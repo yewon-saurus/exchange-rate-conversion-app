@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 
 const TabMenuBar = styled.ul`
   background-color: #dddddd;
@@ -24,14 +25,16 @@ const TabMenuBar = styled.ul`
 `;
 
 const Tab = () => {
+    const tabArr = useSelector((state) => state.currency.tab_arr);
+
     const [currentTab, setCurrentTab] = React.useState(0);
   
     const menuArr = [
-        { name: 'Tab1', content: '1' },
-        { name: 'Tab2', content: '2' },
-        { name: 'Tab3', content: '3' },
-        { name: 'Tab4', content: '4' },
-        { name: 'Tab5', content: '5' },
+        { name: tabArr[0], content: tabArr[0] },
+        { name: tabArr[1], content: tabArr[1] },
+        { name: tabArr[2], content: tabArr[2] },
+        { name: tabArr[3], content: tabArr[3] },
+        { name: tabArr[4], content: tabArr[4] },
     ];
   
     const selectMenuHandler = (index) => {
@@ -43,7 +46,7 @@ const Tab = () => {
             <TabMenuBar>
                 {
                     menuArr.map((ele, idx) => (
-                    <li className={idx === currentTab ? "submenu focused" : "submenu" }
+                    <li key={idx} className={idx === currentTab ? "submenu focused" : "submenu" }
                     onClick={() => selectMenuHandler(idx)}>{ele.name}</li>
                     ))
                 }

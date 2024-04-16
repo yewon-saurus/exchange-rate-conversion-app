@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 const AmountFormDiv = styled.div`
 background-color: #dddddd;
@@ -18,12 +19,15 @@ select {
 `;
 
 const AmountForm = () => {
+    const currencyArr = useSelector((state) => state.currency.currency_arr);
+
     return (
         <AmountFormDiv>
             <input />
-            <select>
-                <option>hi</option>
-                <option>hello</option>
+            <select onChange={(e) => console.log(e.target.value)}>
+                {
+                    currencyArr.map((ele, idx) => <option key={idx} value={ele}>{ele}</option>)
+                }
             </select>
         </AmountFormDiv>
     );
