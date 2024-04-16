@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
+import styled from 'styled-components';
+
 import './App.css';
+import Tab from './components/Tab';
+import AmountForm from './components/AmountForm';
+
+const Width640pxDiv = styled.div`
+width: 600px;
+min-height: 300px;
+margin: auto;
+
+@media (max-width: 640px) {
+  width: 100%;
+}
+`;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Width640pxDiv>
+        <AmountForm />
+        <Tab />
+      </Width640pxDiv>
     </div>
   );
 }
