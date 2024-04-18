@@ -24,18 +24,19 @@ const TabMenuBar = styled.ul`
   }
 `;
 
+const TabBody = styled.div`
+padding: 2em;
+text-align: start;
+`;
+
 const Tab = () => {
     const tabArr = useSelector((state) => state.currency.tab_arr);
 
     const [currentTab, setCurrentTab] = React.useState(0);
-  
-    const menuArr = [
-        { name: tabArr[0], content: tabArr[0] },
-        { name: tabArr[1], content: tabArr[1] },
-        { name: tabArr[2], content: tabArr[2] },
-        { name: tabArr[3], content: tabArr[3] },
-        { name: tabArr[4], content: tabArr[4] },
-    ];
+    const [currencyData, setCurrencyData] = React.useState({
+      date: "",
+      result: 0,
+    });
   
     const selectMenuHandler = (index) => {
         setCurrentTab(index);
@@ -45,15 +46,21 @@ const Tab = () => {
         <div>
             <TabMenuBar>
                 {
-                    menuArr.map((ele, idx) => (
+                    tabArr.map((ele, idx) => (
                     <li key={idx} className={idx === currentTab ? "submenu focused" : "submenu" }
-                    onClick={() => selectMenuHandler(idx)}>{ele.name}</li>
+                    onClick={() => selectMenuHandler(idx)}>{ele}</li>
                     ))
                 }
             </TabMenuBar>
-            <div>
-                <p>{menuArr[currentTab].content}</p>
-            </div>
+            <TabBody>
+                <h1>
+                  {tabArr[currentTab] + ' ' + currencyData.result}
+                </h1>
+                <div>
+                  <p>기준일: </p>
+                  <p>{currencyData.date}</p>
+                </div>
+            </TabBody>
         </div>
     );
   };

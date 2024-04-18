@@ -21,28 +21,39 @@ select {
 
 const AmountForm = () => {
     const currencyArr = useSelector((state) => state.currency.currency_arr);
-    const currencyDispatch = useDispatch();
+    const amount = useSelector((state) => state.currency.amount);
+    const currentSelected = useSelector((state) => state.currency.selected);
 
-    const [amount, setAmount] = React.useState(0);
-    const [currentCurrency, setCurrentCurrency] = React.useState(currencyArr[0]);
+    const currencyDispatch = useDispatch();
 
     const handleInputChange = (e) => {
         const value = e.target.value;
-        if (value <= 1000) setAmount(Number(value));
-        else setAmount(1000);
+        if (value <= 1000) {
+            currencyDispatch({
+                type: "currency/SET_AMOUNT",
+                amount: Number(value),
+            });
+        }
+        else currencyDispatch({
+            type: "currency/SET_AMOUNT",
+            amount: 1000,
+        })
     }
 
     const handleSelectChange = (e) => {
         const selected = e.target.value;
-        const prevSelected = currentCurrency;
+        const prevSelected = currentSelected;
 
         currencyDispatch({
             type: "currency/SWAP",
             selected: selected,
             prev_selected: prevSelected,
         });
-        
-        setCurrentCurrency(selected);
+
+        currencyDispatch({
+            type: "currency/SET_SELECTED",
+            selected: selected,
+        });
     }
 
     return (
