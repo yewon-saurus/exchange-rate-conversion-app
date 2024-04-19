@@ -1,4 +1,24 @@
-# Getting Started with Create React App
+# 실시간 환율 변환 앱
+
+React를 이용한 '실시간 환율 변환 앱' 입니다.
+
+변환하고자 하는 금액값은 최대 `1,000`까지 입력할 수 있습니다. 1,000을 초과하는 값 입력 시 자동으로 1,000으로 바뀌어 입력됩니다.
+
+- 지원 통화 목록
+    - USD
+    - CAD
+    - KRW
+    - HKD
+    - JPY
+    - CNY
+
+- 사용 API: [Exchange Rates Data API :: apilayer.com](https://apilayer.com/marketplace/exchangerates_data-api)
+
+## 📱 실행 화면
+
+![screen](/README/screen-01.gif)
+
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +87,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
