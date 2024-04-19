@@ -1,5 +1,5 @@
 const initialState = {
-    amount: 1000,
+    amount: 0,
     selected: "USD",
     currency_arr: [
         "USD",

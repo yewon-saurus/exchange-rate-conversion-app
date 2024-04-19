@@ -47,16 +47,24 @@ const Tab = () => {
     };
 
     const getAndSetConvertResult = async () => {
-      const response = await exchangeRageConvertApiRequest(
-        amount,
-        currentSelected,
-        tabArr[currentTab],
-      );
-
-      setCurrencyData({
-        date: response.data.date,
-        result: response.data.result,
-      });
+      if (amount <= 0) {
+        setCurrencyData({
+          date: "",
+          result: 0,
+        });
+      }
+      else {
+        const response = await exchangeRageConvertApiRequest(
+          amount,
+          currentSelected,
+          tabArr[currentTab],
+        );
+  
+        setCurrencyData({
+          date: response.data.date,
+          result: response.data.result,
+        });
+      }
     }
 
     React.useEffect(() => {
@@ -78,7 +86,11 @@ const Tab = () => {
                   {tabArr[currentTab] + ' ' + currencyData.result}
                 </h1>
                 <div>
-                  <p>기준일: </p>
+                  {
+                    currencyData.date === ""
+                    ? ''
+                    : <p>기준일: </p>
+                  }
                   <p>{currencyData.date}</p>
                 </div>
             </TabBody>

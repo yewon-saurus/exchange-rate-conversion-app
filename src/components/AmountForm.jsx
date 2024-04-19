@@ -34,10 +34,18 @@ const AmountForm = () => {
                 amount: Number(value),
             });
         }
-        else currencyDispatch({
-            type: "currency/SET_AMOUNT",
-            amount: 1000,
-        })
+        else if (value <= 0) {
+            currencyDispatch({
+                type: "currency/SET_AMOUNT",
+                amount: 0,
+            });
+        }
+        else if (value > 1000) {
+            currencyDispatch({
+                type: "currency/SET_AMOUNT",
+                amount: 1000,
+            });
+        }
     }
 
     const handleSelectChange = (e) => {
