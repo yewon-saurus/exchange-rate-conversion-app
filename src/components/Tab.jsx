@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { exchangeRageConvertApiRequest } from '../shared/network/request';
+
 const TabMenuBar = styled.ul`
   background-color: #dddddd;
   color: #ffffff;
@@ -31,16 +33,35 @@ text-align: start;
 
 const Tab = () => {
     const tabArr = useSelector((state) => state.currency.tab_arr);
+    const amount = useSelector((state) => state.currency.amount);
+    const currentSelected = useSelector((state) => state.currency.selected);
 
     const [currentTab, setCurrentTab] = React.useState(0);
     const [currencyData, setCurrencyData] = React.useState({
       date: "",
-      result: 0,
+      result: "",
     });
   
     const selectMenuHandler = (index) => {
         setCurrentTab(index);
     };
+
+    const getAndSetConvertResult = async () => {
+      const response = await exchangeRageConvertApiRequest(
+        amount,
+        currentSelected,
+        tabArr[currentTab],
+      );
+
+      setCurrencyData({
+        date: response.data.date,
+        result: response.data.result,
+      });
+    }
+
+    React.useEffect(() => {
+      getAndSetConvertResult();
+    }, [currentTab, amount, currentSelected]);
   
     return (
         <div>
