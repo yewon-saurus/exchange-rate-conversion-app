@@ -4,6 +4,21 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { exchangeRageConvertApiRequest } from '../shared/network/request';
 
+const monthMap = {
+  "01": "Jan",
+  "02": "Feb",
+  "03": "Mar",
+  "04": "Apr",
+  "05": "May",
+  "06": "Jun",
+  "07": "Jul",
+  "08": "Aug",
+  "09": "Sep",
+  "10": "Oct",
+  "11": "Nov",
+  "12": "Dec",
+}
+
 const TabMenuBar = styled.ul`
   background-color: #dddddd;
   color: #ffffff;
@@ -59,9 +74,13 @@ const Tab = () => {
           currentSelected,
           tabArr[currentTab],
         );
+
+        const date = response.data.date;
+        const month = date.slice(5, 7);
+        const dateRewrite = date.slice(0, 4) + '-' + monthMap[month] + '-' + date.slice(8, 10);
   
         setCurrencyData({
-          date: response.data.date,
+          date: dateRewrite,
           result: response.data.result,
         });
       }
